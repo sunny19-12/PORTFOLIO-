@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sign Up - Mr. Sunny's Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+<nav class="navbar">
+
+<h2 class="logo">Mr. Sunny's Portfolio</h2>
+
+<ul class="nav-links">
+
+<li><a href="index.html#home">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+
+</ul>
+
+<button class="login-btn" onclick="window.history.back()">
+<i class="fas fa-arrow-left"></i>
+<span>Back</span>
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- SIGNUP SECTION -->
+
+<section class="login-section">
+
+<div class="login-container">
+
+<!-- Header -->
+<div class="login-header">
+<i class="fas fa-user-plus"></i>
+<h1>Join Us Today</h1>
+<p>Create your account</p>
+</div>
+
+<!-- Signup Form -->
+<form class="login-form" id="signupForm">
+
+<!-- Full Name Field -->
+<div class="form-group">
+<label for="fullname">
+<i class="fas fa-user"></i>
+Full Name
+</label>
+<input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+</div>
+
+<!-- Email Field -->
+<div class="form-group">
+<label for="email">
+<i class="fas fa-envelope"></i>
+Email Address
+</label>
+<input type="email" id="email" name="email" placeholder="Enter your email" required>
+</div>
+
+<!-- Password Field -->
+<div class="form-group">
+<label for="password">
+<i class="fas fa-lock"></i>
+Password
+</label>
+<input type="password" id="password" name="password" placeholder="Create a password" required>
+<div class="password-strength">
+<small id="password-strength" class="password-strength-text"></small>
+</div>
+</div>
+
+<!-- Confirm Password Field -->
+<div class="form-group">
+<label for="confirmPassword">
+<i class="fas fa-lock"></i>
+Confirm Password
+</label>
+<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+<div class="password-match">
+<small id="password-match" class="password-match-text"></small>
+</div>
+</div>
+
+<!-- Terms & Conditions -->
+<div class="form-options">
+<div class="terms-agreement">
+<input type="checkbox" id="terms" name="terms" required>
+<label for="terms">I agree to the <a href="#" class="terms-link">Terms & Conditions</a></label>
+</div>
+</div>
+
+<!-- Submit Button -->
+<button type="submit" class="login-submit-btn">
+<i class="fas fa-user-plus"></i>
+Create Account
+</button>
+
+</form>
+
+<!-- Login Link -->
+<div class="signup-section">
+<p>Already have an account? <a href="index2.html">Login Here</a></p>
+</div>
+
+<!-- Divider -->
+<div class="divider">
+<span>or continue with</span>
+</div>
+
+<!-- Social Signup -->
+<div class="social-login">
+<button class="social-btn google-btn" title="Sign up with Google">
+<i class="fab fa-google"></i>
+</button>
+<button class="social-btn github-btn" title="Sign up with GitHub">
+<i class="fab fa-github"></i>
+</button>
+<button class="social-btn linkedin-btn" title="Sign up with LinkedIn">
+<i class="fab fa-linkedin"></i>
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SCRIPT -->
+<script src="script.js"></script>
+
+<script>
+// Password Strength Indicator
+function checkPasswordStrength(password) {
+    let strength = 0;
+    const strengthText = document.getElementById('password-strength');
+
+    if (password.length >= 8) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+    switch(strength) {
+        case 0:
+        case 1:
+            strengthText.textContent = '';
+            break;
+        case 2:
+            strengthText.textContent = 'Weak';
+            strengthText.style.color = '#ef4444';
+            break;
+        case 3:
+            strengthText.textContent = 'Fair';
+            strengthText.style.color = '#f59e0b';
+            break;
+        case 4:
+            strengthText.textContent = 'Good';
+            strengthText.style.color = '#10b981';
+            break;
+        case 5:
+            strengthText.textContent = 'Strong';
+            strengthText.style.color = '#059669';
+            break;
+    }
+}
+
+// Password Match Checker
+function checkPasswordMatch() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const matchText = document.getElementById('password-match');
+
+    if (confirmPassword === '') {
+        matchText.textContent = '';
+        return;
+    }
+
+    if (password === confirmPassword) {
+        matchText.textContent = '✓ Passwords match';
+        matchText.style.color = '#10b981';
+    } else {
+        matchText.textContent = '✗ Passwords do not match';
+        matchText.style.color = '#ef4444';
+    }
+}
+
+// Event Listeners
+document.getElementById('password').addEventListener('input', function() {
+    checkPasswordStrength(this.value);
+    checkPasswordMatch();
+});
+
+document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
+
+// Signup Form Handler
+document.getElementById("signupForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+const fullname = document.getElementById("fullname").value;
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+const confirmPassword = document.getElementById("confirmPassword").value;
+const terms = document.getElementById("terms").checked;
+
+if(!fullname || !email || !password || !confirmPassword){
+alert("⚠ Please fill in all fields");
+return;
+}
+
+if(password !== confirmPassword){
+alert("⚠ Passwords do not match");
+return;
+}
+
+if(password.length < 8){
+alert("⚠ Password must be at least 8 characters long");
+return;
+}
+
+if(!terms){
+alert("⚠ Please agree to the Terms & Conditions");
+return;
+}
+
+alert("✓ Account created successfully! Welcome to Mr. Sunny's Portfolio.");
+// You can redirect to login page here
+// window.location.href = 'index2.html';
+});
+</script>
+
+</body>
+
+</html>

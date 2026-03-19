@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - Mr. Sunny's Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+<nav class="navbar">
+
+<h2 class="logo">Mr. Sunny's Portfolio</h2>
+
+<ul class="nav-links">
+
+<li><a href="index.html#home">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+
+</ul>
+
+<button class="login-btn" onclick="window.history.back()">
+<i class="fas fa-arrow-left"></i>
+<span>Back</span>
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- LOGIN SECTION -->
+
+<section class="login-section">
+
+<div class="login-container">
+
+<!-- Header -->
+<div class="login-header">
+<i class="fas fa-user-circle"></i>
+<h1>Welcome Back</h1>
+<p>Login to your account</p>
+</div>
+
+<!-- Login Form -->
+<form class="login-form" id="loginForm">
+
+<!-- Email Field -->
+<div class="form-group">
+<label for="email">
+<i class="fas fa-envelope"></i>
+Email Address
+</label>
+<input type="email" id="email" name="email" placeholder="Enter your email" required>
+</div>
+
+<!-- Password Field -->
+<div class="form-group">
+<label for="password">
+<i class="fas fa-lock"></i>
+Password
+</label>
+<input type="password" id="password" name="password" placeholder="Enter your password" required>
+</div>
+
+<!-- Remember Me & Forgot Password -->
+<div class="form-options">
+<div class="remember-me">
+<input type="checkbox" id="remember" name="remember">
+<label for="remember">Remember me</label>
+</div>
+<a href="#" class="forgot-password">Forgot Password?</a>
+</div>
+
+<!-- Submit Button -->
+<button type="submit" class="login-submit-btn">
+<i class="fas fa-sign-in-alt"></i>
+Login Now
+</button>
+
+</form>
+
+<!-- Sign Up Link -->
+<div class="signup-section">
+<p>Don't have an account? <a href="#">Sign Up Here</a></p>
+</div>
+
+<!-- Divider -->
+<div class="divider">
+<span>or continue with</span>
+</div>
+
+<!-- Social Login -->
+<div class="social-login">
+<button class="social-btn google-btn" title="Login with Google">
+<i class="fab fa-google"></i>
+</button>
+<button class="social-btn github-btn" title="Login with GitHub">
+<i class="fab fa-github"></i>
+</button>
+<button class="social-btn linkedin-btn" title="Login with LinkedIn">
+<i class="fab fa-linkedin"></i>
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SCRIPT -->
+<script src="script.js"></script>
+
+<script>
+// Login Form Handler
+document.getElementById("loginForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+if(email && password){
+alert("✓ Login Successful! Welcome back.");
+// You can redirect to home page here
+// window.location.href = 'index.html';
+} else {
+alert("⚠ Please fill in all fields");
+}
+});
+</script>
+
+</body>
+
+</html>
